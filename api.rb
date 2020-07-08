@@ -25,17 +25,22 @@ after_bundle do
   generate 'rspec:install'
   run 'mkdir spec/support'
   run 'touch spec/support/factory_bot.rb'
+
   prepend_file 'spec/support/factory_bot.rb', <<~RUBY
     RSpec.configure do |config|
       config.include FactoryBot::Syntax::Methods
     end
   RUBY
+
   inject_into_file 'spec/rails_helper.rb', after: "# Add additional requires below this line. Rails is not loaded until this point!\n" do
-  <<~RUBY
-  require 'support/factory_bot'
-  RUBY
+    <<~RUBY
+    require 'support/factory_bot'
+    RUBY
   end
-  run 'touch spec/factories.rb'
+  file 'spec/factories.rb', <<~RUBY
+    FactoryBot.define do
+    end
+  RUBY
 
   # Git ignore
   ########################################
