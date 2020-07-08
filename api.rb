@@ -1,10 +1,11 @@
 # Application.rb
 ########################################
-application_file_content = <<~RUBY
+application_controller_file_content = <<~RUBY
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
   end
-file 'app/controllers/application_controller.rb', application_file_content, force: true
+RUBY
+file 'app/controllers/application_controller.rb', application_controller_file_content, force: true
 RUBY
 
 file 'app/controllers/api_controller.rb', <<~RUBY
