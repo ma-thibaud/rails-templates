@@ -1,8 +1,8 @@
 # Rails Templates
 Jump start your Rails development with my personal templates
 
-## Basic
-Get a basic Rails 6 API ready to be deployed.
+## API
+Get a Rails for API-only app with RSpec & Factory Bot.
 
 ```bash
 rails new \
