@@ -29,6 +29,13 @@ file 'README.md', markdown_file_content, force: true
 ########################################
 
 after_bundle do
+  # CMS: Devise + Active Admin
+  ########################################
+  file 'assets/config/manifest.js', <<~CODE
+    {}
+  CODE
+  rails_command 'g active_admin:install'
+
   # Testing: RSpec + Factory Bot
   ########################################
   generate 'rspec:install'
@@ -49,13 +56,6 @@ after_bundle do
     FactoryBot.define do
     end
   RUBY
-
-  # CMS: Devise + Active Admin
-  ########################################
-  file 'assets/config/manifest.js', <<~CODE
-    {}
-  CODE
-  rails_command 'g active_admin:install'
 
   # Generators: DB
   ########################################
