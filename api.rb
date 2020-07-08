@@ -34,7 +34,7 @@ after_bundle do
   file 'assets/config/manifest.js', <<~CODE
     {}
   CODE
-  rails_command 'g active_admin:install'
+  # rails_command 'g active_admin:install'
 
   # Testing: RSpec + Factory Bot
   ########################################
