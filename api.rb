@@ -10,7 +10,7 @@ end
 # README
 ########################################
 markdown_file_content = <<~MARKDOWN
-  Rails app generated with [ma-thibaud/rails-templates](https://github.com/ma-thibaud/rails-templates), created by the Mathias Thibaud.
+  Rails app generated with [ma-thibaud/rails-templates](https://github.com/ma-thibaud/rails-templates), created by Mathias Thibaud.
 MARKDOWN
 file 'README.md', markdown_file_content, force: true
 
