@@ -23,10 +23,8 @@ after_bundle do
   # Generators: RSpec + Factory Bot
   ########################################
   generate 'rspec:install'
-  run 'mkdir spec/support'
-  run 'touch spec/support/factory_bot.rb'
 
-  prepend_file 'spec/support/factory_bot.rb', <<~RUBY
+  file 'spec/support/factory_bot.rb', <<~RUBY
     RSpec.configure do |config|
       config.include FactoryBot::Syntax::Methods
     end
@@ -37,6 +35,7 @@ after_bundle do
     require 'support/factory_bot'
     RUBY
   end
+
   file 'spec/factories.rb', <<~RUBY
     FactoryBot.define do
     end
