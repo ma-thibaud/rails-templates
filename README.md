@@ -22,7 +22,7 @@ Get a Rails API-only app ready to deploy with the following:
 
 ```bash
 rails new \
---api
+--api \
 --database postgresql \
 -T \
 -m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/api.rb \
