@@ -1,3 +1,19 @@
+# Application.rb
+########################################
+application_file_content = <<~RUBY
+  class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+  end
+file 'app/controllers/application_controller.rb', application_file_content, force: true
+RUBY
+
+file 'app/controllers/api_controller.rb', <<~RUBY
+  class ApiController < ActionController::API
+  end
+RUBY
+
+gsub_file 'config/application.rb', '# require "sprockets/railtie"', 'require "sprockets/railtie"'
+
 # Gemfile
 ########################################
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
@@ -48,7 +64,7 @@ after_bundle do
 
   inject_into_file 'spec/rails_helper.rb', after: "# Add additional requires below this line. Rails is not loaded until this point!\n" do
     <<~RUBY
-    require 'support/factory_bot'
+      require 'support/factory_bot'
     RUBY
   end
 
