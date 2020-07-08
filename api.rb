@@ -37,12 +37,6 @@ after_bundle do
   run 'bundle exec rubocop --auto-gen-config'
 end
 
-# README
-########################################
-markdown_file_content = <<~MARKDOWN
-  Rails app generated with personal template, created by Mathias Thibaud.
-file 'README.md', markdown_file_content, force: true
-
 # Dotenv
 ########################################
 run 'touch .env'
