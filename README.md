@@ -2,7 +2,7 @@
 Jump start your Rails development with my personal templates
 
 ## Basic
-Get a basic Rails 6 API ready to be deployed with RSpec.
+Get a basic Rails 6 API ready to be deployed.
 
 ```bash
 rails new \
