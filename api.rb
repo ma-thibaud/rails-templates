@@ -1,9 +1,10 @@
 # Gemfile
 ########################################
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
-  <<-'RUBY'
-  # Use RSpec as the testing tool
+  <<-RUBY
+  # Use RSpec and Factory Bot as testing tools
   gem 'rspec-rails', '~> 4.0.0'
+  gem "factory_bot_rails"
   RUBY
 end
 
@@ -19,11 +20,23 @@ file 'README.md', markdown_file_content, force: true
 ########################################
 
 after_bundle do
-  # Generators: DB + RSpec
+  # Generators: RSpec + Factory Bot
   ########################################
-  rails_command 'db:drop db:create db:migrate'
   generate 'rspec:install'
+  run 'mkdir spec/support'
+  run 'touch spec/support/factory_bot.rb'
+  prepend_file 'spec/support/factory_bot.rb', <<-RUBY
+    RSpec.configure do |config|
+      config.include FactoryBot::Syntax::Methods
+    end
+  RUBY
   
+  inject_into_file 'spec/rails_helper.rb', after: "# Add additional requires below this line. Rails is not loaded until this point!\n" do
+  <<~RUBY
+  require 'support/factory_bot'
+  RUBY
+  end
+
   # Git ignore
   ########################################
   append_file '.gitignore', <<~TXT
