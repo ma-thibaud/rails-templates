@@ -1,47 +1,44 @@
 # Gemfile
 ########################################
-gem_group :development, :test do
-  gem 'rspec-rails', '~> 4.0.0'
-
-  gem 'rubocop'
-  gem 'rubocop-performance'
-  gem 'rubocop-rails'
+inject_into_file 'Gemfile', before: 'group :development, :test do' do
+  <<~RUBY
+    gem 'rspec-rails', '~> 4.0.0'
+  RUBY
 end
 
-file '.rubocop.yml', <<-CODE
-require:
-  - rubocop-rails
-  - rubocop-performance
+# README
+########################################
+markdown_file_content = <<~MARKDOWN
+  Rails app generated with [ma-thibaud/rails-templates](https://github.com/ma-thibaud/rails-templates), created by the Mathias Thibaud.
+MARKDOWN
+file 'README.md', markdown_file_content, force: true
 
-AllCops:
-  Exclude:
-    - node_modules/**/*
-    - db/**
-    - db/migrate/**
-    - bin/**
-    - vendor/**/*
-
-Layout/LineLength:
-  Max: 120
-
-Metrics/BlockLength:
-  Exclude:
-    - config/**/*
-
-Style/Documentation:
-  Enabled: false
-CODE
+########################################
+# AFTER BUNDLE
+########################################
 
 after_bundle do
+  # Generators: DB + RSpec
+  ########################################
+  rails_command 'db:drop db:create db:migrate'
   generate 'rspec:install'
-  run 'bundle exec rubocop --auto-gen-config'
+  
+  # Git ignore
+  ########################################
+  append_file '.gitignore', <<~TXT
+    # Ignore .env file containing credentials.
+    .env*
+    # Ignore Mac and Linux file system files
+    *.swp
+    .DS_Store
+  TXT
+
+  # Dotenv
+  ########################################
+  run 'touch .env'
+
+  # Git
+  ########################################
+  git add: '.'
+  git commit: "-m 'Initial commit with api template from https://github.com/ma-thibaud/rails-templates'"
 end
-
-# Dotenv
-########################################
-run 'touch .env'
-
-# Git
-########################################
-git add: '.'
-git commit: "-m 'Initial commit with personal template'"
