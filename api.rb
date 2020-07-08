@@ -51,6 +51,10 @@ after_bundle do
     # Ignore Mac and Linux file system files
     *.swp
     .DS_Store
+
+    # Ignore public, as it is built on deploy
+    # Place files for /public in /client/public
+    /public
   TXT
 
   # Dotenv
