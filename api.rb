@@ -30,12 +30,12 @@ after_bundle do
       config.include FactoryBot::Syntax::Methods
     end
   RUBY
-  
   inject_into_file 'spec/rails_helper.rb', after: "# Add additional requires below this line. Rails is not loaded until this point!\n" do
   <<~RUBY
   require 'support/factory_bot'
   RUBY
   end
+  run 'touch spec/factories.rb'
 
   # Git ignore
   ########################################
