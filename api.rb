@@ -3,8 +3,8 @@
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
   <<-RUBY
   # Use RSpec and Factory Bot as testing tools
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0'
-  gem "factory_bot_rails"
   RUBY
 end
 
@@ -25,7 +25,7 @@ after_bundle do
   generate 'rspec:install'
   run 'mkdir spec/support'
   run 'touch spec/support/factory_bot.rb'
-  prepend_file 'spec/support/factory_bot.rb', <<-RUBY
+  prepend_file 'spec/support/factory_bot.rb', <<~RUBY
     RSpec.configure do |config|
       config.include FactoryBot::Syntax::Methods
     end
