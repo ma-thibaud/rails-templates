@@ -9,6 +9,6 @@ rails new \
 --api \
 --database postgresql \
 -T \
--m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/basic.rb \
+-m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/api.rb \
 CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
