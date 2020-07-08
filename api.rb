@@ -1,7 +1,7 @@
 # Gemfile
 ########################################
-inject_into_file 'Gemfile', after: 'group :development, :test do' do
-  <<-RUBY
+inject_into_file 'Gemfile', after: "group :development, :test do\n" do
+  <<-'RUBY'
   # Use RSpec as the testing tool
   gem 'rspec-rails', '~> 4.0.0'
   RUBY
