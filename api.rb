@@ -52,7 +52,6 @@ after_bundle do
 
   # CMS: Devise + Active Admin
   ########################################
-  run 'mkdir -p app/assets/config && echo '{}' > app/assets/config/manifest.js'
   rails_command 'g active_admin:install'
 
   # Generators: DB
