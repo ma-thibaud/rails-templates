@@ -2,9 +2,18 @@
 ########################################
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
   <<-RUBY
-  # Use RSpec and Factory Bot as testing tools
-  gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 4.0.0'
+    # Use RSpec and Factory Bot as testing tools
+    gem 'factory_bot_rails'
+    gem 'rspec-rails', '~> 4.0.0'
+  RUBY
+end
+
+inject_into_file 'Gemfile', before: 'group :development, :test do' do
+  <<~RUBY
+    # Use Active Admin as administration framework
+    gem 'activeadmin'
+    gem 'devise'
+
   RUBY
 end
 
