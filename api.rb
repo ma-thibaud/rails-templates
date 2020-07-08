@@ -1,7 +1,8 @@
 # Gemfile
 ########################################
-inject_into_file 'Gemfile', before: 'group :development, :test do' do
-  <<~RUBY
+inject_into_file 'Gemfile', after: 'group :development, :test do' do
+  <<-RUBY
+    # Use RSpec as the testing tool
     gem 'rspec-rails', '~> 4.0.0'
   RUBY
 end
@@ -26,8 +27,10 @@ after_bundle do
   # Git ignore
   ########################################
   append_file '.gitignore', <<~TXT
+
     # Ignore .env file containing credentials.
     .env*
+
     # Ignore Mac and Linux file system files
     *.swp
     .DS_Store
