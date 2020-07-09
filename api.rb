@@ -1,4 +1,4 @@
-# Application.rb
+# Application Controller
 ########################################
 application_controller_file_content = <<~RUBY
   class ApplicationController < ActionController::Base
@@ -12,28 +12,43 @@ file 'app/controllers/api_controller.rb', <<~RUBY
   end
 RUBY
 
+# Application
+########################################
 gsub_file 'config/application.rb', '# require "sprockets/railtie"', 'require "sprockets/railtie"'
 
+inject_into_file 'config/application.rb', after: "config.api_only = true\n" do
+  <<-RUBY
+
+    # Middleware for ActiveAdmin
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+  RUBY
+end
+
+# Manifest
+########################################
 file 'app/assets/config/manifest.js', <<~CODE
   {}
 CODE
 
 # Gemfile
 ########################################
-inject_into_file 'Gemfile', after: "group :development, :test do\n" do
-  <<-RUBY
-    # Use RSpec and Factory Bot as testing tools
-    gem 'factory_bot_rails'
-    gem 'rspec-rails', '~> 4.0.0'
-  RUBY
-end
-
 inject_into_file 'Gemfile', before: 'group :development, :test do' do
   <<~RUBY
     # Use Active Admin as administration framework
     gem 'activeadmin'
     gem 'devise'
 
+  RUBY
+end
+
+inject_into_file 'Gemfile', after: "group :development, :test do\n" do
+  <<-RUBY
+  # Use RSpec and Factory Bot as testing tools
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 4.0.0'
   RUBY
 end
 
@@ -55,7 +70,8 @@ after_bundle do
 
   # CMS: Devise + Active Admin
   ########################################
-  rails_command 'g active_admin:install'
+  run 'rails g active_admin:install'
+  rails_command 'db:migrate db:seed'
 
   # Testing: RSpec + Factory Bot
   ########################################
@@ -73,15 +89,10 @@ after_bundle do
     RUBY
   end
 
-  file 'spec/factories.rb', <<~RUBY
-    FactoryBot.define do
-    end
-  RUBY
-
   # Git ignore
   ########################################
   append_file '.gitignore', <<~TXT
-
+  
     # Ignore .env file containing credentials.
     .env*
 
