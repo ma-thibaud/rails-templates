@@ -46,6 +46,10 @@ file 'README.md', markdown_file_content, force: true
 ########################################
 
 after_bundle do
+  # Generators: DB
+  ########################################
+  rails_command 'db:create'
+
   # CMS: Devise + Active Admin
   ########################################
   file 'app/assets/config/manifest.js', <<~CODE
@@ -73,10 +77,6 @@ after_bundle do
     FactoryBot.define do
     end
   RUBY
-
-  # Generators: DB
-  ########################################
-  rails_command 'db:drop db:create db:migrate db:seed'
 
   # Git ignore
   ########################################
