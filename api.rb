@@ -6,7 +6,6 @@ application_controller_file_content = <<~RUBY
   end
 RUBY
 file 'app/controllers/application_controller.rb', application_controller_file_content, force: true
-RUBY
 
 file 'app/controllers/api_controller.rb', <<~RUBY
   class ApiController < ActionController::API
