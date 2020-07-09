@@ -14,6 +14,10 @@ RUBY
 
 gsub_file 'config/application.rb', '# require "sprockets/railtie"', 'require "sprockets/railtie"'
 
+file 'app/assets/config/manifest.js', <<~CODE
+  {}
+CODE
+
 # Gemfile
 ########################################
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
@@ -51,9 +55,6 @@ after_bundle do
 
   # CMS: Devise + Active Admin
   ########################################
-  file 'app/assets/config/manifest.js', <<~CODE
-    {}
-  CODE
   rails_command 'g active_admin:install'
 
   # Testing: RSpec + Factory Bot
