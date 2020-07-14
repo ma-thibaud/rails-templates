@@ -111,8 +111,6 @@ after_bundle do
   
   # React
   ########################################
-  say_step 'React'
-  say_info 'Install React and modify a few files'
   run 'npx create-react-app client'
   
   index_js_file_content = <<~RUBY
