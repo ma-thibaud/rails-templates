@@ -130,7 +130,7 @@ after_bundle do
   RUBY
   file 'client/src/index.js', index_js_file_content, force: true
 
-  inject_into_file 'client/package.json', after: '"private": true,\n"' do
+  inject_into_file 'client/package.json', after: '"private": true,"\n' do
     <<-CODE
       '"proxy": "http://localhost:3001"'
     CODE
@@ -143,7 +143,7 @@ after_bundle do
     api: PORT=3001 bundle exec rails s  
   CODE
 
-  file 'lib/tasks/rake.task', <<~CODE
+  file 'lib/tasks/start.rake', <<~CODE
     namespace :start do
       task :development do
         exec 'heroku local -f Procfile.dev'
