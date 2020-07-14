@@ -1,10 +1,11 @@
 # Rails Templates
-Jump start your Rails development with my personal templates
+Jump start your Rails development with my personal templates.
 
 ## Testing
 Get a Rails app ready to deploy with following testing tools:
 - RSpec
 - Factory Bot
+- Rubocop
 
 ```bash
 rails new \
@@ -16,7 +17,7 @@ CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 
 ## API
 Get a Rails API-only app ready to deploy with the following:
-- Testing: RSpec and Factory Bot
+- Testing: RSpec, Factory Bot, Rubocop
 - CMS: Devise and Active Admin
 
 
