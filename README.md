@@ -39,3 +39,18 @@ rails generate model MyModel
 rails db:migrate
 rails generate active_admin:resource MyModel
 ```
+
+## React
+Get a Rails API-only app with a React front-end and the following:
+- Testing: [RSpec](https://github.com/rspec/rspec-rails) & [Factory Bot](https://github.com/thoughtbot/factory_bot_rails)
+- CMS: [Devise](https://github.com/heartcombo/devise) & [Active Admin](https://github.com/activeadmin/activeadmin)
+
+
+```bash
+rails new \
+--api \
+--database postgresql \
+-T \
+-m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/react.rb \
+CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
+```
