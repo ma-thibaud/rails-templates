@@ -130,7 +130,7 @@ after_bundle do
   RUBY
   file 'client/src/index.js', index_js_file_content, force: true
 
-  inject_into_file 'config/application.rb', after: '"private": true,\n"' do
+  inject_into_file 'client/package.json', after: '"private": true,\n"' do
     <<-CODE
       '"proxy": "http://localhost:3001"'
     CODE
@@ -138,7 +138,7 @@ after_bundle do
 
   # Procfile
   ########################################
-  file 'Profile.dev', <<~CODE
+  file 'Procfile.dev', <<~CODE
     web: PORT=3000 yarn --cwd client start
     api: PORT=3001 bundle exec rails s  
   CODE
