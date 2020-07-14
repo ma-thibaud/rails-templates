@@ -19,6 +19,8 @@ Style/Documentation:
   Enabled: false
 Style/WordArray:
   Enabled: false
+Style/SymbolArray:
+  Enabled: false
 Metrics/AbcSize:
   Enabled: false
 Style/MutableConstant:
