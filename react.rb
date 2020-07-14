@@ -130,7 +130,7 @@ after_bundle do
   RUBY
   file 'client/src/index.js', index_js_file_content, force: true
 
-  inject_into_file 'client/package.json', after: '"private": true,"\n' do
+  inject_into_file 'client/package.json', after: '"private": true,\n' do
     <<-CODE
       '"proxy": "http://localhost:3001"'
     CODE
