@@ -71,6 +71,8 @@ after_bundle do
   run 'rails g active_admin:install'
   rails_command 'db:migrate db:seed'
 
+  gsub_file 'db/seeds.rb', ' if Rails.env.development?', ''
+
   # Testing: RSpec + Factory Bot
   ########################################
   generate 'rspec:install'
@@ -129,10 +131,28 @@ after_bundle do
   file 'client/src/index.js', index_js_file_content, force: true
 
   inject_into_file 'config/application.rb', after: "private": true,\n" do
-  <<-CODE
-    "proxy": "http://localhost:3001"
+    <<-CODE
+      "proxy": "http://localhost:3001"
+    CODE
+  end
+
+  # Procfile
+  ########################################
+  file 'Profile.dev', <<~CODE
+    web: PORT=3000 yarn --cwd client start
+    api: PORT=3001 bundle exec rails s  
   CODE
-end
+
+  file 'lib/tasks/rake.task', <<~CODE
+    namespace :start do
+      task :development do
+        exec 'heroku local -f Procfile.dev'
+      end
+    end
+
+    desc 'Start development server'
+    task :start => 'start:development'
+  CODE
 
   # Git
   ########################################
