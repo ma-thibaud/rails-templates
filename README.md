@@ -30,10 +30,9 @@ rails new \
 CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
-Start the server and visit http://localhost:3000/admin and log in as the default user:
-
-User: admin@example.com
-Password: password
+Start the server, visit http://localhost:3000/admin and log in as the default user:
+- User: admin@example.com
+- Password: password
 
 Create and register a new model:
 ```bash
