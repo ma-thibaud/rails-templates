@@ -131,5 +131,5 @@ after_bundle do
   # Git
   ########################################
   git add: '.'
-  git commit: "-m 'Initial commit with api template from https://github.com/ma-thibaud/rails-templates'"
+  git commit: "-m 'Initial commit with react template from https://github.com/ma-thibaud/rails-templates'"
 end
