@@ -109,6 +109,10 @@ after_bundle do
   ########################################
   run 'touch .env'
 
+  # Rubocop
+  ########################################
+  run 'curl -L   https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/.rubocop.yml > .rubocop.yml'
+
   # Git
   ########################################
   git add: '.'
