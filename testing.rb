@@ -20,7 +20,11 @@ file 'README.md', markdown_file_content, force: true
 ########################################
 
 after_bundle do
-  # Generators: RSpec + Factory Bot
+  # Generators: DB
+  ########################################
+  rails_command 'db:create'
+  
+  # Testing: RSpec + Factory Bot
   ########################################
   generate 'rspec:install'
 
@@ -32,14 +36,9 @@ after_bundle do
 
   inject_into_file 'spec/rails_helper.rb', after: "# Add additional requires below this line. Rails is not loaded until this point!\n" do
     <<~RUBY
-    require 'support/factory_bot'
+      require 'support/factory_bot'
     RUBY
   end
-
-  file 'spec/factories.rb', <<~RUBY
-    FactoryBot.define do
-    end
-  RUBY
 
   # Git ignore
   ########################################
