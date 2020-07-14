@@ -17,7 +17,7 @@ CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ## API
 Get a Rails API-only app ready to deploy with the following:
 - Testing: [RSpec](https://github.com/rspec/rspec-rails) & [Factory Bot](https://github.com/thoughtbot/factory_bot_rails)
-- CMS: [Devise](https://github.com/heartcombo/devise) and [Active Admin](https://github.com/activeadmin/activeadmin)
+- CMS: [Devise](https://github.com/heartcombo/devise) & [Active Admin](https://github.com/activeadmin/activeadmin)
 
 
 ```bash
