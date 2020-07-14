@@ -29,3 +29,15 @@ rails new \
 -m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/api.rb \
 CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
+
+Start the server and visit http://localhost:3000/admin and log in as the default user:
+
+User: admin@example.com
+Password: password
+
+Create and register a new model:
+```bash
+rails generate model MyModel
+rails db:migrate
+rails generate active_admin:resource MyModel
+```
