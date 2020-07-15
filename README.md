@@ -54,3 +54,11 @@ rails new \
 -m https://raw.githubusercontent.com/ma-thibaud/rails-templates/master/react.rb \
 CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
+
+Simply run the two servers:
+```bash
+heroku local -f Procfile.dev
+```
+
+Client: http://localhost:3000/
+Active Admin: http://localhost:3001/admin
