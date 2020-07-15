@@ -60,5 +60,5 @@ Simply run the two servers:
 heroku local -f Procfile.dev
 ```
 
-Client: http://localhost:3000/
-Active Admin: http://localhost:3001/admin
+- Client: http://localhost:3000/
+- Active Admin: http://localhost:3001/admin
