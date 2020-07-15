@@ -55,10 +55,11 @@ rails new \
 CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
-Simply run the two servers:
+Simply run:
 ```bash
 heroku local -f Procfile.dev
 ```
 
+You can now access the app:
 - Client: http://localhost:3000/
-- Active Admin: http://localhost:3001/admin
+- Active Admin via API: http://localhost:3001/admin
