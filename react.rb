@@ -131,7 +131,7 @@ after_bundle do
   file 'client/src/index.js', index_js_file_content, force: true
 
   inject_into_file 'client/package.json', before: '"dependencies"' do
-    <<-CODE
+    <<~CODE
       "proxy": "http://localhost:3001",
     CODE
   end
