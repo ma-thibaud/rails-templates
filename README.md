@@ -57,7 +57,7 @@ CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 
 Simply run:
 ```bash
-heroku local -f Procfile.dev
+bundle exec rake start
 ```
 
 You can now access the app:
