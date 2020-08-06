@@ -132,7 +132,7 @@ after_bundle do
 
   inject_into_file 'client/package.json', before: '"dependencies"' do
     <<-CODE
-      '"proxy": "http://localhost:3001"'
+      "proxy": "http://localhost:3001",
     CODE
   end
 
