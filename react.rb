@@ -45,6 +45,7 @@ end
 inject_into_file 'Gemfile', after: "group :development, :test do\n" do
   <<-RUBY
   # Use RSpec and Factory Bot as testing tools
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0'
   RUBY
@@ -80,6 +81,30 @@ after_bundle do
   file 'spec/support/factory_bot.rb', <<~RUBY
     RSpec.configure do |config|
       config.include FactoryBot::Syntax::Methods
+    end
+  RUBY
+
+  file 'spec/support/database_cleaner.rb', <<~RUBY
+    RSpec.configure do |config|
+      config.before(:suite) do
+        DatabaseCleaner.clean_with(:truncation)
+      end
+
+      config.before(:each) do
+        DatabaseCleaner.strategy = :transaction
+      end
+
+      config.before(:each, :js => true) do
+        DatabaseCleaner.strategy = :truncation
+      end
+
+      config.before(:each) do
+        DatabaseCleaner.start
+      end
+
+      config.after(:each) do
+        DatabaseCleaner.clean
+      end
     end
   RUBY
 
