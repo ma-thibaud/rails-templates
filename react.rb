@@ -47,6 +47,7 @@ inject_into_file 'Gemfile', after: "group :development, :test do\n" do
   # Use RSpec and Factory Bot as testing tools
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'faker', git: 'https://github.com/stympy/faker'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'shoulda-matchers', '~> 3.1'
   RUBY
@@ -105,7 +106,8 @@ after_bundle do
 
     RSpec.configure do |config|
       config.use_transactional_fixtures = false
-      config.include Devise::Test::ControllerHelpers, type: :controller
+      config.include Devise::Test::ControllerHelpers, type: :controllers
+      config.include Devise::Test::IntegrationHelpers, type: :request
       config.infer_spec_type_from_file_location!
       config.filter_rails_from_backtrace!
     end
@@ -153,6 +155,13 @@ after_bundle do
       end
     end
   RUBY
+
+  inject_into_file 'config/environments/test.rb', after: "end\n" do
+    <<~RUBY
+      Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
+      Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
+    RUBY
+  end
 
   # Git ignore
   ########################################
