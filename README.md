@@ -42,8 +42,7 @@ rails generate active_admin:resource MyModel
 
 ## React
 Get a Rails API-only app with a React front-end and the following:
-- Testing: [RSpec](https://github.com/rspec/rspec-rails), [Factory Bot](https://github.com/thoughtbot/factory_bot_rails) & [Database Cleaner
-](https://github.com/DatabaseCleaner/database_cleaner)
+- Testing: [RSpec](https://github.com/rspec/rspec-rails), [Factory Bot](https://github.com/thoughtbot/factory_bot_rails), [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) & [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner)
 - Linter: [Rubocop](https://github.com/rubocop-hq/rubocop)
 - CMS: [Devise](https://github.com/heartcombo/devise) & [Active Admin](https://github.com/activeadmin/activeadmin)
 
