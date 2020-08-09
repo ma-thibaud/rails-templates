@@ -48,6 +48,7 @@ inject_into_file 'Gemfile', after: "group :development, :test do\n" do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'shoulda-matchers', '~> 3.1'
   RUBY
 end
 
@@ -85,14 +86,13 @@ after_bundle do
   RUBY
 
   rails_helper_file_content = <<~RUBY
-    require 'spec_helper'
     ENV['RAILS_ENV'] ||= 'test'
     require File.expand_path('../config/environment', __dir__)
 
     abort("The Rails environment is running in production mode!") if Rails.env.production?
+    require 'spec_helper'
     require 'rspec/rails'
     require 'database_cleaner'
-    require 'support/factory_bot'
 
     Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
@@ -141,6 +141,15 @@ after_bundle do
 
       config.after(:all) do
         DatabaseCleaner.clean
+      end
+    end
+  RUBY
+
+  file 'spec/support/shoulda_matchers.rb', <<~RUBY
+    Shoulda::Matchers.configure do |config|
+      config.integrate do |with|
+        with.test_framework :rspec
+        with.library :rails
       end
     end
   RUBY
