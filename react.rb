@@ -158,6 +158,7 @@ after_bundle do
 
   inject_into_file 'config/environments/test.rb', after: "end\n" do
     <<~RUBY
+      
       Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
       Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
     RUBY
